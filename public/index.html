@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<style>
+		body		 {background-color: black; color: cyan;}
+		h1  		 {color: lime;}
+		h2  		 {color: magenta;}
+		h3  		 {color: yellow;}
+		p   		 {color: cyan;}
+		a:link 		 {color: blue;}
+		a:visited 	 {color: red;}
+		a:hover 	 {color: hotpink;}
+		a:active	 {color: lime;}
+	</style>
+    	<meta charset="UTF-8" />
+    	<title>Dockerized Node P5.JS</title>
+	<body>
+		<h1>Scalable, Dockerized, Node based P5.JS Apps!</h1>
+		<h2> I'm speedrunning learning my stack and ops in 10 days, let's see where we can go.</h2>
+		<p>This sketch comes prepackaged with this Docker image as a test script, but by adding
+	   	your own HTML file on your own port and starting your dockerfile to listen on that port (default 5555),
+	   	you will be able to launch your own P5.js scripts in a node docker container!
+		</p>
+		<p>
+		All you need to do is provide the following HTML file:
+		(As Script srcs)
+		
+		</br><h3>
+		https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/p5.js
+		</br>
+ 		sketch.js
+		</br></h3>
+
+		somewhere in the HTML file.
+
+		You want your HTML File and your sketch.js file to be in a folder named public under root. 
+
+		Then in root you want this as a file called server.js which you list as your main file in your package.json.
+		You don't need to install dependencies--they're already here for you! 
+		</br>
+		Somewhere in index.html, your sketch.js... both in /app. 
+		</br>
+		Your server.js is in root and looks like this:
+		</p>
+		</br>
+		<h3>
+		const express = require('express');</br>
+		const app = express();</br>
+		const port = 5555;</br>
+		</br>
+		app.use(express.static('public'));</br>
+		</br>
+		app.get('/', function(req, res) {</br>
+  			res.sendFile(__dirname + '/sketch.js');</br>
+		});</br>
+		</br>
+		app.listen(port, function() {</br>
+ 		console.log(`Server running on port ${port}. If webpage does not appear, try restarting the docker container
+		 using the following command: \ndocker run -p 8080:${po>
+		</br>;});
+		</br>
+		</br></h3>
+		<p>
+		Be sure to include both in packages.json. You do not need to include express or p5 because these are already packaged in this container. 
+		</br>
+		Great! Now you have a way to deploy containerized node p5.js applications!
+		</p>
+		<h1>p5.js Particle SandBox</h1>
+		<p> Play with it <a href="https://editor.p5js.org/FractalCoding/sketches/10DoW4iRR">here! Code by me, Fractal Hassan (FractalPterodactyl)!</a></p>
+    		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.3.1/p5.js"></script>
+ 		<script src="sketch.js"></script>
+  		</body>
+	</head>
+</html>	

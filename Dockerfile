@@ -1,6 +1,10 @@
 FROM node:alpine
-COPY . \app
-WORKDIR \app
-CMD npm install --save @google-cloud/firestore
-CMD export GOOGLE_APPLICATION_CREDENTIALS="/secrets/serv-firestore.key"
-CMD node app.js
+WORKDIR /app
+COPY package.json /app
+RUN npm install
+COPY . /app
+RUN chown -R node:node /app
+EXPOSE 8080
+USER node
+CMD timeout 1m node server.js
+CMD [ "npm", "start" ]
